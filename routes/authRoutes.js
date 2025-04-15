@@ -10,7 +10,7 @@ const generateToken = (userId) => {
 
 router.post("/register", async (req, res) => {
     try {
-        console.log("Registering user with:", req.body); //new addition
+        // console.log("Registering user with:", req.body); //new addition
 
         const{email, username, password} = req.body;
 
@@ -63,8 +63,8 @@ router.post("/register", async (req, res) => {
 
 
     } catch (error) {
-        console.log("Error in register route", error.message); //new addition
-        console.error(error.stack); //new addition
+        console.log("Error in register route", error); //new addition
+        // console.error(error.stack); //new addition
         res.status(500).json({message: "Internal server error "});
     }
 });
