@@ -1,6 +1,7 @@
 import express from "express";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
+import { create } from "domain";
 
 const router = express.Router();
 
@@ -44,6 +45,7 @@ router.post("/register", async (req, res) => {
             username,
             password,
             profileImage,
+            
         })
 
         await user.save();
@@ -56,7 +58,8 @@ router.post("/register", async (req, res) => {
                 id: user._id,
                 username: user.username,
                 email: user.email,
-                profileImage: user.profileImage
+                profileImage: user.profileImage,
+                createdAt: user.createdAt,
 
             }
         })
@@ -94,6 +97,7 @@ router.post("/login", async (req, res) => {
             username: user.username,
             email: user.email,
             profileImage: user.profileImage,
+            createdAt: user.createdAt,
         },
     });
 
