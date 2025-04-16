@@ -46,7 +46,7 @@ router.post("/",protectRoute, async (req, res) => {
 router.get("/", protectRoute, async (req, res) => {
     try {
         const page = req.query.page || 1;
-        const limit = req.query.limmit || 5;
+        const limit = parseInt(req.query.limit) || 5; 
         const skip = (page -1 )* limit;
 
 
@@ -62,12 +62,12 @@ router.get("/", protectRoute, async (req, res) => {
         res.send(
             {books,
             currentPage: page,
-            totalBooks: total,
+            totalBooks: totalBooks,
             totalPages: Math.ceil(totalBooks/ limit)}
         );
     } catch (error) {
         console.log("Error in getting books", error);
-        res.status(500).json({message: "Internal Server Error"});
+        res.status(500).json({message: "Can't fetch books"});
     }
 })
 
